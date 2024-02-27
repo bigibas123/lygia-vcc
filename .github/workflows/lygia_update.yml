@@ -36,8 +36,8 @@ jobs:
           file_path: "${{ env.PACKAGE_JSON }}"
       
       - name: Create Package Zip
-        working-directory: "${{ steps.package_data.outputs.version }}"
-        run: zip -r "./${{ steps.package_data.outputs.name }}-${{ steps.package_data.outputs.version }}.zip" . -x .git .github
+        working-directory: "${{ env.PACKAGE_PATH }}"
+        run: zip -r "${{ steps.package_data.outputs.name }}-${{ steps.package_data.outputs.version }}.zip" . -x .git .github
 
       - name: Create Tag
         id: create_tag
