@@ -25,6 +25,7 @@ jobs:
       - run: |
           git fetch --unshallow --tags
           echo $?
+          ls -la
       
       
       - name: Get package properties
