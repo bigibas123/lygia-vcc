@@ -26,6 +26,7 @@ jobs:
           git fetch --unshallow --tags
           echo $?
           ls -la
+          echo $PWD
       
       
       - name: Get package properties
@@ -36,7 +37,7 @@ jobs:
       
       - name: Create Package Zip
         working-directory: "${{ steps.package_data.outputs.version }}"
-        run: zip -r "${{ steps.package_data.outputs.name }}-${{ steps.package_data.outputs.version }}.zip" . -x .git .github
+        run: zip -r "./${{ steps.package_data.outputs.name }}-${{ steps.package_data.outputs.version }}.zip" . -x .git .github
 
       - name: Create Tag
         id: create_tag
