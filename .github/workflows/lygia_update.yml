@@ -1,14 +1,13 @@
 name: Create release
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
-      latest:
-        description: 'build using latest'
-        required: true
-        type: boolean
       tag:
-        description: 'tag to build'
+        description: 'Lygia tag'
         required: false
         type: string
 
@@ -23,13 +22,17 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: robinraju/release-downloader@v1.8
-        with:
-          repository: "patriciogonzalezvivo/lygia"
-          latest: ${{ inputs.latest }}
-          tag: ${{ inputs.tag }}
-          tarBall: true
-          extract: true
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with: 
+          repository: patriciogonzalezvivo/lygia
+          fetch-tags: true
+          ref: ${{ inputs.tag }}
+      - run: |
+          git fetch --unshallow --tags
+          echo $?
+          ls -la
+          echo $PWD
       
       
       - name: Get package properties
