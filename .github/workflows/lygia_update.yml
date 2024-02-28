@@ -42,7 +42,7 @@ jobs:
           file_path: "${{ env.PACKAGE_JSON }}"
 
       - name: Replace Author in package.json with proper object expected by vcc nuke
-        run: jq '.author = {} | .author.name = "${{ steps.package_data.outputs.author }}" | .displayName = "${{ steps.package_data.outputs.name }}"' ${{ env.PACKAGE_JSON }}  > tmp && mv tmp ${{ env.PACKAGE_JSON }}
+        run: jq '.author = {} | .author.name = "${{ steps.package_data.outputs.author }}" | .author.url = "https://patriciogonzalezvivo.com/" | .displayName = "${{ steps.package_data.outputs.name }}" | .licensesUrl = "https://lygia.xyz/license"' ${{ env.PACKAGE_JSON }}  > tmp && mv tmp ${{ env.PACKAGE_JSON }}
       
       - name: Create Package Zip
         working-directory: "${{ env.PACKAGE_PATH }}"
