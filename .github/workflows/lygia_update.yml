@@ -54,4 +54,5 @@ jobs:
           files: |
             ${{ steps.package_data.outputs.name }}-${{ steps.package_data.outputs.version }}.zip
             ${{ env.PACKAGE_JSON }}
+            LICENSE.md
           tag_name: ${{ steps.package_data.outputs.version }}
