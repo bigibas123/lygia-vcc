@@ -1,9 +1,6 @@
 name: Create release
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       tag:
@@ -46,7 +43,7 @@ jobs:
       
       - name: Create Package Zip
         working-directory: "${{ env.PACKAGE_PATH }}"
-        run: zip -r "${{ steps.package_data.outputs.name }}-${{ steps.package_data.outputs.version }}.zip" . -x .git/* .github/*
+        run: zip -r "${{ steps.package_data.outputs.name }}-${{ steps.package_data.outputs.version }}.zip" . -x ".git/*"
       
       - name: Make Release
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844
